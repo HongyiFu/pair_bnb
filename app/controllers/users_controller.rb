@@ -18,10 +18,14 @@ class UsersController < Clearance::UsersController
       	sign_in @user
       	redirect_back_or url_after_create
     	else
-    		flash[:sign_up_info] = "bad info"
+    		flash[:sign_up_info] = "bad info!"
       	redirect_to	sign_up_path
     	end
     end
+  end
+
+  def edit 
+  	@user = User.find(params[:id])
   end
 
 	# def create
