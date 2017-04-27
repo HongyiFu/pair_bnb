@@ -56,3 +56,7 @@ gem 'clearance'
 
 # figaro for privacy protection
 gem "figaro"
+
+# omniauth
+gem 'omniauth'
+gem 'omniauth-facebook'

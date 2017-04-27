@@ -12,8 +12,13 @@ Rails.application.routes.draw do
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"
   get "/sign_up" => "clearance/users#new", as: "sign_up"
   
+  get "/users/:id/edit" => "users#edit", as: "edit_user"
+
   root 'static#home'
+  
   # get '/users' => 'users#index'
+
+  get "/auth/:provider/callback" => "sessions#create_from_omniauth"
 
   constraints Clearance::Constraints::SignedIn.new do
     root to: "users#show", as: :signed_in_root

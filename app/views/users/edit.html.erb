@@ -1,0 +1,2 @@
+<h1>Welcome <%= @user.first_name.nil? ? (@user.last_name.nil? ? "nameless one" : @user.last_name) : @user.first_name + (@user.last_name.nil? ? "" : @user.last_name)%>!</h1>
+<h1>This is the edit page for you to delete your profile.</h1>
