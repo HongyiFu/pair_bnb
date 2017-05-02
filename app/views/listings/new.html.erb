@@ -22,5 +22,8 @@
 	<%= f.label :tag_ids, "Select tags for your listing:" %>
 	<%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_description %>
 	<br><br>
+	<!-- not done! -->
+	<%= f.label :avatar %>
+
 	<%= f.submit %>
 <% end %>
