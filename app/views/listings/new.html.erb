@@ -1,0 +1,26 @@
+<h1>Create a listing and become a Host now!</h1>
+<%= form_for @listing do |f| %>
+	<%= f.label :home_type, 'Choose your home type' %>
+	<%= f.select :home_type, Listing.home_types.map { |key, value| [key.humanize, key] }, prompt: "Select your home type:" %>
+	
+	<br><br>
+	<%= f.label :country, 'Country' %>
+	<%= f.country_select :country, { priority_countries: ["MY", "SG"], include_blank: 'Select a country' }%>
+	<br><br>
+	<%= f.label :city, 'City' %>
+	<%= f.text_field :city, placeholder: "City" %>
+	<br><br>
+  <%= f.label :address, 'Address' %>
+  <%= f.text_area :address, placeholder:'Please provide the full address'%>
+  <br><br>
+  <%= f.label :description, 'Description' %>
+  <%= f.text_area :description, placeholder:'Clear description to help your listing stand out!'%> 
+  <br><br> 
+	<%= f.label :price, 'Price per night' %>
+	<%= f.number_field :price, placeholder: 'Price format: 199.99 (no symbol)' %>  
+	<br><br>
+	<%= f.label :tag_ids, "Select tags for your listing:" %>
+	<%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_description %>
+	<br><br>
+	<%= f.submit %>
+<% end %>

@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   constraints Clearance::Constraints::SignedOut.new do
   	root to: 'static#home'
   end
+
+  resources :listings
 end
