@@ -1,10 +1,4 @@
-require 'byebug'
-
 class UsersController < Clearance::UsersController
-
-	# def index
-	# 	@users = User.all 
-	# end
 
 	def create
 		current_params = user_params

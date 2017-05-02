@@ -60,3 +60,12 @@ gem "figaro"
 # omniauth
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+# drop down country select
+gem 'country_select'
+
+# lets try it out someday?
+# gem 'simple_form'
+
+# carrierwave - image uploader
+gem 'carrierwave', '~> 1.0'

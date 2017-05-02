@@ -1,0 +1,19 @@
+<% if @listings.nil? %>
+	<h1>There are no listings at the moment. Check back later.</h1>
+<% else %>
+	<h1>List of listings:</h1>
+	<% @listings.each do |listing| %>
+	<div class='row'>
+		<div class="col-md-6">
+			<img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/IM20JJF5IY.jpg" alt="Pretty House" height=150px, width=150px>
+		</div>
+		<div class="col-md-6">
+			<p>
+				<%=link_to(<%="#{listing.hometype} in #{listing.city}"%>,listing)%>
+			</p>
+			<p><%= "Price :#{listing.price}" %></p>
+			<p><%= listing.description %></p>
+		</div>
+	</div>
+	<% end %>
+<% end %>

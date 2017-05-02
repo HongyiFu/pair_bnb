@@ -1,0 +1,12 @@
+<h1><%="#{@listing.hometype} in #{@listing.city}"%></h1>
+
+<div class="center-block">
+	<img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/IM20JJF5IY.jpg" alt="Pretty House" height=300px, width=300px>
+</div>
+<p><%="#{@listing.hometype} in #{@listing.city}"%></p>
+<p>City: <%= @listing.city %>, Country: <%= @listing.country %></p>
+<p>Description: </p>
+<p><%= @listing.description.nil? ? "There is no description provided by the host." : @listing.description %></p>
+<p><%= "Price :#{@listing.price}" %></p>
+
+<%= button_tag "Book now!", data: { disable_with: "Please wait..." } %>
