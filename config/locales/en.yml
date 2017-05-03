@@ -20,9 +20,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-
-errors:
+ errors:
   messages:
     carrierwave_processing_error: "Cannot resize image."
     carrierwave_integrity_error: "Not an image."

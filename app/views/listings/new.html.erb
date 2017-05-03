@@ -1,8 +1,7 @@
 <h1>Create a listing and become a Host now!</h1>
 <%= form_for @listing do |f| %>
 	<%= f.label :home_type, 'Choose your home type' %>
-	<%= f.select :home_type, Listing.home_types.map { |key, value| [key.humanize, key] }, prompt: "Select your home type:" %>
-	
+	<%= f.select :home_type, Listing.home_types.keys.to_a, {prompt: "Select your home type:"} %>
 	<br><br>
 	<%= f.label :country, 'Country' %>
 	<%= f.country_select :country, { priority_countries: ["MY", "SG"], include_blank: 'Select a country' }%>
@@ -23,7 +22,17 @@
 	<%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_description %>
 	<br><br>
 	<!-- not done! -->
-	<%= f.label :avatar %>
-
+	<%= f.label :avatars, "Upload pictures of your listings (use \"shift + click\" to select multiple pictures)" %>
+	<%= f.file_field :avatars, multiple:true %>
+	<br><br>
+	<%= f.label :available_dates, "Input the available dates for your listing:" %>
+	<span class="multi-date-field">
+		<br>
+		Start date: <%= f.date_field :available_dates, {name:"listing[available_dates][]"} %>
+		End date: <%= f.date_field :available_dates, {name:"listing[available_dates][]"} %>
+	</span>
+	<%= button_tag 'Generate more rows', {type: "button", class:"unhide-button"} %>
+	<span id='for-append'></span>	
+	<br><br>
 	<%= f.submit %>
 <% end %>

@@ -3,7 +3,6 @@ class UsersController < Clearance::UsersController
 	def create
 		current_params = user_params
 		confirmed_password = current_params.delete(:password_confirmation)
-		byebug
 		if current_params[:password] != confirmed_password
 			redirect_to	sign_up_path, :warning => "Passwords do not match. Please try again." 
 		else 
@@ -20,15 +19,6 @@ class UsersController < Clearance::UsersController
   def edit 
   	@user = User.find(params[:id])
   end
-
-	# def create
-	# 	@user = User.new(user_params)
-	# 	if @user.save
-	# 		redirect_to @user
-	# 	else
-	# 		redirect_to 'static#home'
-	# 	end
-	# end
 
 	# def show
 	# 	@user = User.find(params[:id])

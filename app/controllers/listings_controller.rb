@@ -4,11 +4,7 @@ class ListingsController < ApplicationController
 	end
 
 	def create
-		byebug
-		param = listing_params
-		param[:tag_ids] = param[:tag_ids][1..-1] if param[:tag_ids] != []
-		byebug
-		@listing = Listing.new(listing_params)
+		@listing = current_user.listings.new(listing_params)
 		if @listing.save
 			redirect_to @listing, success:"Listing is added successfully."
 		else 
@@ -30,6 +26,7 @@ class ListingsController < ApplicationController
 
 	def show
 		@listing = Listing.find(params[:id])
+		@reservation = Reservation.new
 	end
 
 	def update
@@ -37,7 +34,7 @@ class ListingsController < ApplicationController
 
 	private
 	def listing_params
-		params.require(:listing).permit(:address, :city, :country, :price, :home_type, :description, :user_id, :tag_ids => [])
+		params.require(:listing).permit(:address, :city, :country, :price, :home_type , :description, :user_id, {tag_ids:[]}, {avatars: []}, {available_dates:[]})
 	end
 
 end
