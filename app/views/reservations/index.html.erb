@@ -1,0 +1,25 @@
+<h1>This is the reservation page. All your reservations will be here.</h1>
+
+<h2>The info of your listings:</h2>
+<ul>
+	<% @reservations.each do |r| %>
+		<h1><li><%="#{r.listing.home_type} in #{r.listing.city}"%></li></h1>
+		
+		<% r.listing.avatars.each do |image| %>
+			<%= image_tag image.url %>
+		<% end %>
+		
+		<p><%="#{r.listing.home_type} in #{r.listing.city}"%></p>
+		<p>City: <%= r.listing.city %>, Country: <%= r.listing.country %></p>
+		<p>Description: </p>
+		<p>
+			<%= r.listing.description.nil? ? "There is no description provided by the host." : r.listing.description %>
+		</p>
+		<p><%= "Price :#{r.listing.price}" %></p>
+	
+		<p>
+			Start time: <%= r.start_date %><br>
+			End time: <%= r.end_date %>
+		</p>
+	<% end %>
+</ul>

@@ -10,7 +10,10 @@
 	
   <body>
     <% if signed_in? %>
+      <%= t('hello') %><br>
+      Welcome back, <%= current_user.first_name %><br>
       Signed in as: <%= current_user.email %>
+      <%= image_tag current_user.avatar.url(:thumb), class:"profile_pic" if !current_user.avatar.file.nil?%>
       <%= button_to 'Sign out', sign_out_path, method: :delete %>
       <%= button_to 'Become a Host', new_listing_path, {method: :get} %>
     <% else %>
@@ -23,6 +26,8 @@
         <div class="alert <%= key %>"><%= value %></div>
       <% end %>
     </div>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

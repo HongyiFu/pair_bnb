@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428044156) do
+ActiveRecord::Schema.define(version: 20170503165226) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,13 +38,26 @@ ActiveRecord::Schema.define(version: 20170428044156) do
     t.text     "address"
     t.string   "city"
     t.string   "country"
-    t.decimal  "price",       precision: 10, scale: 2
-    t.string   "home_type"
+    t.decimal  "price",           precision: 10, scale: 2
+    t.integer  "home_type"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.json     "avatars"
+    t.date     "available_dates",                                       array: true
     t.index ["user_id"], name: "index_listings_on_user_id", using: :btree
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "listing_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["listing_id"], name: "index_reservations_on_listing_id", using: :btree
+    t.index ["user_id"], name: "index_reservations_on_user_id", using: :btree
   end
 
   create_table "tags", force: :cascade do |t|
@@ -66,10 +79,13 @@ ActiveRecord::Schema.define(version: 20170428044156) do
     t.date     "birthday"
     t.string   "phone_number"
     t.integer  "gender",                         default: 0
+    t.string   "avatar"
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["remember_token"], name: "index_users_on_remember_token", using: :btree
   end
 
   add_foreign_key "authentications", "users"
   add_foreign_key "listings", "users"
+  add_foreign_key "reservations", "listings"
+  add_foreign_key "reservations", "users"
 end

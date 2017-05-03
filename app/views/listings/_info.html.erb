@@ -1,0 +1,30 @@
+<h1><%="#{@listing.home_type} in #{@listing.city}"%></h1>
+	
+<% @listing.avatars.each do |image| %>
+	<%= image_tag image.url %>
+<% end %>
+<p><%="#{@listing.home_type} in #{@listing.city}"%></p>
+<p>City: <%= @listing.city %>, Country: <%= @listing.country %></p>
+<p>Description: </p>
+<p><%= @listing.description.nil? ? "There is no description provided by the host." : @listing.description %></p>
+<p><%= "Price :#{@listing.price}" %></p>
+
+<p>Available dates:</p>
+<ul>
+	<% @listing.available_dates.each_with_index do |date,i| %>
+		<% if i % 2 == 0 %>
+			<li><%= "Start date: #{date}, End date: #{@listing.available_dates[i+1]}" %></li>
+		<% end %>
+	<% end %>
+</ul>
+
+<p>Reserved dates:</p>
+<ul>
+	<% if @listing.reservations.length > 0 %>
+		<% @listing.reservations.each do |r| %>
+			<li><%= "#{r.start_date}-#{r.end_date}" %></li>
+		<% end %>
+	<% else %>
+		<li>No reservations yet. Be the first!</li>
+	<% end %>
+</ul>
