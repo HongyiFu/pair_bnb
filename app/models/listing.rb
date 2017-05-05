@@ -25,9 +25,14 @@ class Listing < ApplicationRecord
 		if self.available_dates.count == 0
 			errors.add(:available_dates,"must not be blank.")
 		elsif self.available_dates.count % 2 != 0
-			errors.add(:available_dates,"are invalid. End date must be present.")
+			errors.add(:available_dates,"are invalid. End date and start date must be present.")
 		end
 	end
+
+	def country_name
+    country = ISO3166::Country[self.country]
+    country.translations[I18n.locale.to_s] || country.name 
+  end
 
 
 end

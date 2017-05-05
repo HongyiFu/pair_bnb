@@ -1,13 +1,13 @@
 class ReservationsController < ApplicationController
 	def create
-		byebug
-		@reservation = Listing.find(params[:listing_id]).reservations.new(reservation_params)
+		listing = Listing.find(params[:listing_id])
+		@reservation = listing.reservations.new(reservation_params)
 		@reservation.user = current_user
-		byebug
 		if @reservation.save
 			redirect_to reservations_path, success:"Your reservation has been made."
 		else 
-			redirect_back_or listing_path, warning:"#{@reservation.errors.full_messages.join(". ")}."
+			flash[:warning] = "#{@reservation.errors.full_messages.join(". ")}."
+			redirect_back_or listing_path(listing)
 		end
 	end
 

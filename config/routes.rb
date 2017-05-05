@@ -10,10 +10,12 @@ Rails.application.routes.draw do
 
   resources :listings do
     resources :reservations, only: [:create, :destroy, :update, :show]
-  end
+  end 
 
   resources :reservations, only: [:index]
 
+  get '/reservations/:rid/braintree/new' => "braintree#new", as: "payment_new"
+  post '/reservations/:rid/braintree/checkout' => "braintree#checkout", as: "payment_checkout"
 
   get "/sign_in" => "clearance/sessions#new", as: "sign_in"
   delete "/sign_out" => "clearance/sessions#destroy", as: "sign_out"

@@ -4,7 +4,7 @@
 	<%= image_tag image.url %>
 <% end %>
 <p><%="#{@listing.home_type} in #{@listing.city}"%></p>
-<p>City: <%= @listing.city %>, Country: <%= @listing.country %></p>
+<p>City: <%= @listing.city %>, Country: <%= @listing.country_name %></p>
 <p>Description: </p>
 <p><%= @listing.description.nil? ? "There is no description provided by the host." : @listing.description %></p>
 <p><%= "Price :#{@listing.price}" %></p>
