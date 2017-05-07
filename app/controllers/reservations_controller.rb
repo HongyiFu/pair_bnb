@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
 		if @reservation.save
 			redirect_to reservations_path, success:"Your reservation has been made."
 		else 
-			flash[:warning] = "#{@reservation.errors.full_messages.join(". ")}."
+			flash[:danger] = "#{@reservation.errors.full_messages.join(". ")}."
 			redirect_back_or listing_path(listing)
 		end
 	end

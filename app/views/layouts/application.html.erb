@@ -23,7 +23,7 @@
   
     <div id="flash">
       <% flash.each do |key, value| %>
-        <div class="alert <%= key %>"><%= value %></div>
+        <div class="alert alert-<%= key %>"><%= value %></div>
       <% end %>
     </div>
     <div class="container">
