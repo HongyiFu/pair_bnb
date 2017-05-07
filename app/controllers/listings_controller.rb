@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
 		if @listing.save
 			redirect_to @listing, success:"Listing is added successfully."
 		else 
-			redirect_to new_listing_path, warning:"#{@listing.errors.full_messages.join(". ")}."
+			redirect_to new_listing_path, danger:"#{@listing.errors.full_messages.join(". ")}."
 		end
 	end
 

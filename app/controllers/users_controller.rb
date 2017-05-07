@@ -4,14 +4,14 @@ class UsersController < Clearance::UsersController
 		current_params = user_params
 		confirmed_password = current_params.delete(:password_confirmation)
 		if current_params[:password] != confirmed_password
-			redirect_to	sign_up_path, :warning => "Passwords do not match. Please try again." 
+			redirect_to	sign_up_path, :danger => "Passwords do not match. Please try again." 
 		else 
     	@user = User.new(current_params)
     	if @user.save
       	sign_in @user
       	redirect_back_or url_after_create
     	else
-      	redirect_to	sign_up_path, warning:"#{@user.errors.full_messages.join(". ")}."
+      	redirect_to	sign_up_path, danger:"#{@user.errors.full_messages.join(". ")}."
     	end
     end
   end

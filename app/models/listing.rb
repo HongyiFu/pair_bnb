@@ -21,11 +21,26 @@ class Listing < ApplicationRecord
 	# If input recvd as ["start_date", "end_date", "", ""], it means user added additional column, 
 	# but did not use it. Validation would pass and additional empty strings will be deleted.
 	def check_dates_array
+		# check start-date end-date pair so that they appear together
+		arr = self.available_dates
+		arr.each_with_index do |d,i|
+			if i % 2 == 0
+				if d == nil 
+					if arr[i+1] == nil
+						arr.delete_at(i)
+						arr.delete_at(i+1)
+					else 
+						errors.add(:available_dates,"are invalid. Start date and end date must both be present")
+					end
+				elsif arr[i+1] == nil
+					errors.add(:available_dates,"are invalid. Start date and end date must both be present")
+				end
+			end
+		end
+
 		self.available_dates.delete(nil)
 		if self.available_dates.count == 0
-			errors.add(:available_dates,"must not be blank.")
-		elsif self.available_dates.count % 2 != 0
-			errors.add(:available_dates,"are invalid. End date and start date must be present.")
+			errors.add(:available_dates,"must not be blank")
 		end
 	end
 

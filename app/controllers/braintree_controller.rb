@@ -14,7 +14,9 @@ class BraintreeController < ApplicationController
    	)
 
  		if result.success?
-      Reservation.find(params[:rid]).update(confirm_status:true)
+      r = Reservation.find(params[:rid])
+      r.update(confirm_status:true)
+      ReservationMailer.booking_email(current_user,r.listing.user,r).deliver_now
     	redirect_to reservations_path,:success => "Transaction successful!" 
   	else
     	redirect_to payment_new_path, :danger => "Transaction failed. Please try again." 
