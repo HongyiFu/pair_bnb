@@ -1,0 +1,21 @@
+<h1>This is search page.</h1>
+
+<% if @listing.nil? %>
+	<h1>No matching search results.</h1>
+<% else %>
+	<h1>Matching listings:</h1>
+	<% @listing.each do |listing| %>
+	<div class='row'>
+		<div class="col-md-6">
+			<img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/IM20JJF5IY.jpg" alt="Pretty House" height=150px, width=150px>
+		</div>
+		<div class="col-md-6">
+			<p>
+				<%=link_to("#{listing.home_type} in #{listing.city}",listing)%>
+			</p>
+			<p><%= "Price :#{listing.price}" %></p>
+			<p><%= listing.description %></p>
+		</div>
+	</div>
+	<% end %>
+<% end %>

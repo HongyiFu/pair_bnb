@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       only: [:create, :edit, :update]
   end
 
+  get "/listings/search" => "listings#search", as: "listings_search"
+
   resources :listings do
     resources :reservations, only: [:create, :destroy, :update, :show]
   end 
@@ -26,6 +28,8 @@ Rails.application.routes.draw do
   root 'static#home'
 
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
+
+
 
   # constraints Clearance::Constraints::SignedIn.new do
   #   root to: "users#show", as: :signed_in_root

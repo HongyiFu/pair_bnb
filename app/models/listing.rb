@@ -14,6 +14,16 @@ class Listing < ApplicationRecord
 	validates :available_dates, presence:true
 	validate :check_dates_array
 	mount_uploaders :avatars, AvatarUploader
+	scope :price_range, -> (start_price,end_price){where(price:start_price..end_price)}
+	scope :contains_city, -> (city){where("city ilike ?","%#{city}%")}
+	scope :num_of_bedroom, -> (num){where(num_of_bedroom:num)}
+	scope :num_of_bathroom, -> (num){where(num_of_bedroom:num)}
+	# scope :tags, -> (tag_ids){
+	# 	arr = Listing.none
+	# 	return Listing.all if tag_ids == [] 
+	# 	Listing.each do |l|
+	# 		for
+	# 	}
 
 	# To check if there is even number of dates. 
 	# If input recvd as ["date", ""], validation would fail.

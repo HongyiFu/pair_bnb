@@ -32,6 +32,13 @@ class ListingsController < ApplicationController
 	def update
 	end
 
+	def search
+		byebug
+		# @listing = Listing.all
+		params.permit(:start_amount,:end_amount,:city,:num_of_bedroom,:num_of_bathroom)
+		@listing = Listing.price_range(params[:start_amount],params[:end_amount]).contains_city(params[:city]).num_of_bedroom(params[:num_of_bedroom]).num_of_bathroom(params[:num_of_bathroom])
+	end
+
 	private
 	def listing_params
 		params.require(:listing).permit(:address, :city, :country, :price, :home_type , :description, :user_id, {tag_ids:[]}, {avatars: []}, {available_dates:[]})
