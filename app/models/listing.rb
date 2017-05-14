@@ -12,7 +12,7 @@ class Listing < ApplicationRecord
 	validates :price, presence:true
 	validates :home_type, presence:true
 	validates :available_dates, presence:true
-	validate :check_dates_array
+	# validate :check_dates_array
 	mount_uploaders :avatars, AvatarUploader
 	scope :price_range, -> (start_price,end_price){where(price:start_price..end_price)}
 	scope :contains_city, -> (city){where("city ilike ?","%#{city}%")}
