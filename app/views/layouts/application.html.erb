@@ -1,33 +1,90 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Pairbnb</title>
-    <%= csrf_meta_tags %>
+<head>
+  <title>Pear Bear and Bear - Experience Places and People</title>
+  <%= csrf_meta_tags %>
+  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Ubuntu" rel="stylesheet">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-	
-  <body>
-    <% if signed_in? %>
-      <%= t('hello') %><br>
-      Welcome back, <%= current_user.first_name %><br>
-      Signed in as: <%= current_user.email %>
-      <%= image_tag current_user.avatar.url(:thumb), class:"profile_pic" if !current_user.avatar.file.nil?%>
-      <%= button_to 'Sign out', sign_out_path, method: :delete %>
-      <%= button_to 'Become a Host', new_listing_path, {method: :get} %>
-    <% else %>
-      <%= link_to 'Sign in', sign_in_path %>
-      <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <div class="navbar-brand">
+          <a href="/"><%= image_tag "PearBearAndBear.jpg.png", alt:"PearBearAndBear", id:"logo" %></a>
+        </div>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/listings/new">Become a Host!<span class="sr-only">(current)</span></a></li>
+          <li><%= link_to "Your reservations", reservations_path %></li>
+          <!-- <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">One more separated link</a></li>
+            </ul>
+          </li> -->
+        </ul>
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search for a listing">
+          </div>
+          <button type="submit" class="btn btn-default">Search</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <% if signed_in? %>
+  Welcome back, <%= current_user.first_name %><br>
+  Signed in as: <%= current_user.email %>
+  <%= image_tag current_user.avatar.url(:thumb), class:"profile_pic" if !current_user.avatar.file.nil?%>
+  <%= button_to 'Sign out', sign_out_path, method: :delete %>
+  <%= button_to 'Become a Host', new_listing_path, {method: :get} %>
+  <% else %>
+  <%= link_to 'Sign in', sign_in_path %>
+  <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+  <% end %>
+  <div id="warning" class="container alert alert-danger" style="font-size:20px; color:#807caf"><strong>
+    <u>WARNING</u>: This site requires the use of Javascript for form submissions. Unexpected results may arise without Javascript enabled, including, but not limited to, payments authorized without confirmation.<br><br>Please enable Javascript on your browser.</strong>
+  </div>
+  <div id="flash">
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
     <% end %>
-  
-    <div id="flash">
-      <% flash.each do |key, value| %>
-        <div class="alert alert-<%= key %>"><%= value %></div>
-      <% end %>
-    </div>
-    <div class="container">
-      <%= yield %>
-    </div>
-  </body>
+  </div>
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
 </html>

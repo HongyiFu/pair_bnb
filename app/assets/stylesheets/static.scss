@@ -1,0 +1,54 @@
+#logo {
+	max-width:100%;
+	max-height:100%;
+}
+
+.navbar {
+	min-height: 200px;
+  	// font-weight: bold;
+  	font-size: 25px;
+	// background-color: #8792a3;
+}
+
+.navbar-brand {
+	padding: 0 30px;
+	height: 200px;
+	line-height: 80px;
+}
+
+.navbar-nav {
+	padding-top: 50px;
+}
+
+.navbar-form{
+	padding-top: 60px;
+}
+
+// .navbar-toggle {
+// 	(80px - button height 34px) / 2 = 23px
+// 	margin-top: 23px;
+// 	padding: 9px 10px !important;
+// }
+
+@media (min-width: 768px) {
+	.navbar-nav > li > a {
+		/* (80px - line-height of 27px) / 2 = 26.5px */
+		padding-top: 26.5px;
+		padding-bottom: 26.5px;
+		line-height: 27px;
+	}
+}
+
+.container {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+// info on listings use 'Gloria Hallelujah'
+
+.line1 {
+	background-color: rgba(193, 178, 38, 0.4);
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-align: center;
+
+}

@@ -1,6 +1,7 @@
 <h1>Create a listing and become a Host now!</h1>
-<%= form_for @listing do |f| %>
-	<%= f.label :home_type, 'Choose your home type' %>
+<div data-turbolinks="false">
+	<%= form_for @listing do |f| %>
+	<%= f.label :home_type, 'Choose your home type' %><br>
 	<%= f.select :home_type, Listing.home_types.keys.to_a, {prompt: "Select your home type:"} %>
 	<br><br>
 	<%= f.label :country, 'Country' %>
@@ -9,12 +10,12 @@
 	<%= f.label :city, 'City' %>
 	<%= f.text_field :city, placeholder: "City" %>
 	<br><br>
-  <%= f.label :address, 'Address' %>
-  <%= f.text_area :address, placeholder:'Please provide the full address'%>
-  <br><br>
-  <%= f.label :description, 'Description' %>
-  <%= f.text_area :description, placeholder:'Clear description to help your listing stand out!'%> 
-  <br><br> 
+	<%= f.label :address, 'Address' %>
+	<%= f.text_area :address, placeholder:'Please provide the full address'%>
+	<br><br>
+	<%= f.label :description, 'Description' %>
+	<%= f.text_area :description, placeholder:'Clear description to help your listing stand out!'%> 
+	<br><br> 
 	<%= f.label :price, 'Price per night' %>
 	<%= f.number_field :price, placeholder: 'Price format: 199.99 (no symbol)' %>  
 	<br><br>
@@ -35,4 +36,5 @@
 	<span id='for-append'></span>	
 	<br><br>
 	<%= f.submit %>
-<% end %>
+	<% end %>
+</div>

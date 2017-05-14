@@ -1,8 +1,10 @@
-<% if @listings.nil? %>
-	<h1>There are no listings at the moment. Check back later.</h1>
+<h1>This is search page.</h1>
+
+<% if @listing.nil? %>
+	<h1>No matching search results.</h1>
 <% else %>
-	<h1>List of listings:</h1>
-	<% @listings.each do |listing| %>
+	<h1>Matching listings:</h1>
+	<% @listing.each do |listing| %>
 	<div class='row'>
 		<div class="col-md-6">
 			<img src="https://d2lm6fxwu08ot6.cloudfront.net/img-thumbs/960w/IM20JJF5IY.jpg" alt="Pretty House" height=150px, width=150px>

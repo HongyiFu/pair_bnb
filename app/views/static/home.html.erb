@@ -1,19 +1,32 @@
-<h1>This is the home page.</h1>
+<div class="jumbotron">
+	<h1>Welcome to Pear - Bear and Bear</h1>
+	<p>A platform for hosting personalised home-staying experiences.</p>
+	<%= button_to  %>
+</div>
+<div class="line1">
+	<h4>
+		Increasingly, flexible, personal, and hospitable accommodations are displacing the traditional establishments.
+	</h4>
+</div>
+<div class="line2">
+	<h4>
+		At PBB, we strive to offer more than just a place to stay during your travels. 
+	</h4>
+	<h4>
+		Nothing gives us more pleasure than a positive review on a host.
+	</h4>
+</div>	
 
-<h2>In future, it should display the listings#show page.</h2>
-<% @listing = Listing.new %>
 
-<%= form_for @listing do |f| %>
-  <%= f.label :home_type, 'Home Type' %><br>
-	<%= check_box_tag(:home_type) %>
-	<%= label_tag(:home_type, "I own a dog") %>
-	<%= check_box_tag(:home_type) %>
-	<%= label_tag(:home_type, "I own a cat") %>
-	<br><br> 
-	<%= f.label :home_type %>
-	<%= f.select :home_type, options_for_select(Listing.home_types), prompt:"Please select your home type" %>
-	<%= f.label :price, 'Price per night' %>
-	<%= f.number_field :price, placeholder: 'Price format: 199.99 (no symbol)' %>          
-	<%= label_tag :tags, "Select tags for your listing:" %>
-	<%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tag_description %>
-<%  end %>
+
+<p>Search based on criteria below:</p>
+
+<%= form_tag listings_search_path, method: :get do %>
+Starting price: <%= number_field_tag(:start_amount) %> Upper cap: <%= number_field_tag(:end_amount) %><br>
+City: <%= text_field_tag(:city,) %><br>
+Number of bedrooms: <%= number_field_tag(:num_of_bedroom) %> <br>
+Number of bathrooms: <%= number_field_tag(:num_of_bathroom) %> <br>
+<%= submit_tag "Search" %>
+<% end %>
+
+
